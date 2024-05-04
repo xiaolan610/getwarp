@@ -1,29 +1,45 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python package
-
+#工作名字
+name: glados-checkin
+#
 on:
+  workflow_dispatch: 
   push:
-    branches: [ "main" ]
+  # 当对分支master进行push操作的时候，这个工作流就被触发了
+    branches: [ master ]
   pull_request:
-    branches: [ "main" ]
+  #只运行特定分支master
+    branches: [ master ]
+  schedule:
+  # 定时任务，在每天的24点 18点推送签到信息到邮箱
+    - cron:  0 16 * * * 
+      # 定时器更改时间
+      # https://tool.lu/crontab/
+      # https://datetime360.com/cn/utc-cst-china-time/ #UTC时间 国际协调时间+8=北京时间
+      # https://docs.github.com/cn/actions/using-workflows/workflow-syntax-for-github-actions#onschedule 官方参考
+  #watch:
+  #    types: started   
 
 jobs:
-  build:
-
+#将工作流程中运行的所有作业组合在一起
+  checkin:
+  #定义名为 checkin 的作业。 子键将定义作业的属性 
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.9", "3.10", "3.11"]
-
+    #将作业配置为在最新版本的 Ubuntu Linux 运行器上运行
+    #if: github.event.repository.owner.id == github.event.sender.id
+    # https://p3terx.com/archives/github-actions-manual-trigger.html
+    
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    - uses: actions/checkout@v2
+#uses 关键字指定此步骤将运行 actions/checkout 操作的 v3。 这是一个将存储
+#库签出到运行器上的操作，允许您对代码（如生成和测试工具）运行脚本或其他操
+#作。 每当工作流程将针对存储库的代码运行时，都应使用签出操作。
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+        python-version: 3.9.1
+
+    - name: Checkin
       run: |
-        python warp.py
+        python3 ./warp.py

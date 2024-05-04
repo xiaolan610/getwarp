@@ -1,6 +1,6 @@
 
 #工作名字
-name: glados-checkin
+name: 获取Warp流量
 #
 on:
   workflow_dispatch: 
@@ -40,6 +40,6 @@ jobs:
       with:
         python-version: 3.12
 
-    - name: Checkin
+    - name: Get it!
       run: |
         python3 ./warp.py

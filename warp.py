@@ -49,31 +49,30 @@ def run():
 		return status_code
 	except Exception as error:
 		print(error)	
-def start():
-	g = 0
-	b = 0
-	while True:
-		result = run()
-		if result == 200:
-			g = g + 1
-			os.system('cls' if os.name == 'nt' else 'clear')
-			print("")
-			print("Getting WARP+ Traffic")
-			print("")
-			print(f"\n[-] WORK ON ID: {referrer}")    
-			print(f"[:)] {g} GB has been successfully added to your account.")
-			print(f"[#] Total: {g} Good {b} Bad")
-			print("[*] After 5 seconds, a new request will be sent.")
-			time.sleep(15)
-			if (g>=1000):
-				break
-		else:
-			b = b + 1
-			os.system('cls' if os.name == 'nt' else 'clear')
-			print("")
-			print("Getting WARP+ Traffic")
-			print("")
-			print("[:(] Error when connecting to server.")
-			print(f"[#] Total: {g} Good {b} Bad")	
 
-start()
+g = 0
+b = 0
+while True:
+	result = run()
+	if result == 200:
+		g = g + 1
+		os.system('cls' if os.name == 'nt' else 'clear')
+		print("")
+		print("Getting WARP+ Traffic")
+		print("")
+		print(f"\n[-] WORK ON ID: {referrer}")    
+		print(f"[:)] {g} GB has been successfully added to your account.")
+		print(f"[#] Total: {g} Good {b} Bad")
+		print("[*] After 5 seconds, a new request will be sent.")
+		time.sleep(15)
+		if (g>=1000):
+			break
+	else:
+		b = b + 1
+		os.system('cls' if os.name == 'nt' else 'clear')
+		print("")
+		print("Getting WARP+ Traffic")
+		print("")
+		print("[:(] Error when connecting to server.")
+		print(f"[#] Total: {g} Good {b} Bad")	
+

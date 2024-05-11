@@ -64,7 +64,7 @@ def start():
 			print(f"[:)] {g} GB has been successfully added to your account.")
 			print(f"[#] Total: {g} Good {b} Bad")
 			print("[*] After 5 seconds, a new request will be sent.")
-			time.sleep(5)
+			time.sleep(15)
 			if (g>=1000):
 				break
 		else:
